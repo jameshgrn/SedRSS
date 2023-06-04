@@ -2,12 +2,9 @@ name: Weekly Cron Job
 
 on:
   schedule:
-    - cron: "43 18 * * 0"  # Runs every Sunday at 6:43 PM ET (22:43 UTC)
-
+    - cron: "*/3 * * * *"  # Runs every 3 minutes
 jobs:
-  run-script:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
