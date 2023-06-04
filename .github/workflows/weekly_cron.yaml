@@ -1,9 +1,8 @@
 name: Weekly Cron Job
 
 on:
-  push:
   schedule:
-    - cron: "*/3 * * * *"
+    - cron: "0 8 * * *"
 
 jobs:
   cron:
