@@ -4,7 +4,7 @@ name: Weekly Cron Job
 
 on:
   schedule:
-    - cron: "30 13 * * 0"  # Runs every Sunday at 1:30 PM ET (17:30 UTC)
+    - cron: "0 18 * * 0"  # Runs every Sunday at 6:00 PM ET (22:00 UTC)
 
 jobs:
   run-script:
@@ -25,6 +25,10 @@ jobs:
           pip install -r requirements.txt
 
       - name: Run script
+        env:
+          API_KEY: ${{secrets.API_KEY}}
+          USERNAME: ${{secrets.USERNAME}}
+          PASSWORD: ${{secrets.PASSWORD}}
         run: python main.py
 
 
