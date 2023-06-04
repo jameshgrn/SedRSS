@@ -1,16 +1,11 @@
-import configparser
 import datetime
 import smtplib
 from email.mime.multipart import MIMEMultipart
 import os
 from email.mime.text import MIMEText
-
 import openai
 
-# Set your OpenAI API key
-config = configparser.ConfigParser()
-config.read('config.ini')
-openai.api_key = config.get('openai', 'api_key')
+openai.api_key = os.environ['API_KEY']
 
 def generate_greeting(titles, journals):
     """
@@ -253,7 +248,7 @@ def send_email(email_body, sender_email, sender_password, recipient_email):
 
 def get_sender_credentials():
     """Retrieve sender credentials from secrets."""
-    sender_email = os.environ['EMAIL_USERNAME']
-    sender_password = os.environ['EMAIL_PASSWORD']
+    sender_email = os.environ['USERNAME']
+    sender_password = os.environ['PASSWORD']
     return sender_email, sender_password
 
