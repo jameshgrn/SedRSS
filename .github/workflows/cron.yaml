@@ -3,7 +3,9 @@ name: Weekly Cron Job
 on:
   schedule:
     - cron: "*/3 * * * *"  # Runs every 3 minutes
+
 jobs:
+  run:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -25,5 +27,3 @@ jobs:
           USERNAME: ${{secrets.USERNAME}}
           PASSWORD: ${{secrets.PASSWORD}}
         run: python main.py
-
-
