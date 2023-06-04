@@ -2,10 +2,10 @@ name: Weekly Cron Job
 
 on:
   schedule:
-    - cron: "*/5 * * * *"
+    - cron: "*/1 * * * *"
 
 jobs:
-  run-script:
+  cron:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
