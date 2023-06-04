@@ -2,6 +2,7 @@ import configparser
 import datetime
 import smtplib
 from email.mime.multipart import MIMEMultipart
+import os
 from email.mime.text import MIMEText
 
 import openai
@@ -251,11 +252,8 @@ def send_email(email_body, sender_email, sender_password, recipient_email):
 
 
 def get_sender_credentials():
-    """Read sender credentials from the config.ini file."""
-    config = configparser.ConfigParser()
-    config.read('config.ini')
-
-    sender_email = config.get('Email', 'username')
-    sender_password = config.get('Email', 'password')
-
+    """Retrieve sender credentials from secrets."""
+    sender_email = os.environ['EMAIL_USERNAME']
+    sender_password = os.environ['EMAIL_PASSWORD']
     return sender_email, sender_password
+
