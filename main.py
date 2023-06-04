@@ -29,7 +29,6 @@ def main():
 
     recipient_email = 'jhgearon@iu.edu'
 
-
     sender_email, sender_password = send_email.get_sender_credentials()
 
     send_email.send_email(email_body, sender_email, sender_password, recipient_email)
