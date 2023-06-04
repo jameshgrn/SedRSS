@@ -2,7 +2,7 @@ name: Weekly Cron Job
 
 on:
   schedule:
-    - cron: "*/1 * * * *"
+    - cron: "*/3 * * * *"
 
 jobs:
   cron:
