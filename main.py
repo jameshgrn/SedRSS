@@ -2,7 +2,37 @@ import fetch_feeds
 import send_email
 import operator
 import datetime
+import pytz
 
+
+
+def get_last_email_timestamp():
+    """Retrieve the last email timestamp from a file or database."""
+    try:
+        with open('last_email_timestamp.txt', 'r') as file:
+            timestamp = file.read().strip()
+            return datetime.datetime.strptime(timestamp, '%Y-%m-%d %H:%M:%S').replace(tzinfo=pytz.UTC)
+    except FileNotFoundError:
+        # Return a default timestamp if the file is not found
+        return datetime.datetime.min.replace(tzinfo=pytz.UTC)
+
+
+def store_last_email_timestamp(timestamp):
+    """Store the last email timestamp to a file or database."""
+    with open('last_email_timestamp.txt', 'w') as file:
+        file.write(timestamp.strftime('%Y-%m-%d %H:%M:%S'))
+
+
+def filter_entries(entries, last_email_timestamp):
+    """Filter entries based on the last email timestamp."""
+    filtered_entries = []
+    for entry in entries:
+        published_date = entry.get('published')
+        if published_date:
+            entry_timestamp = datetime.datetime.strptime(published_date, '%a, %d %b %Y %H:%M:%S %z')
+            if entry_timestamp > last_email_timestamp:
+                filtered_entries.append(entry)
+    return filtered_entries
 
 def main():
     """Main function to orchestrate the operations."""
@@ -35,36 +65,6 @@ def main():
 
     # Store the timestamp of the current execution as the last email timestamp
     store_last_email_timestamp(datetime.datetime.now())
-
-
-
-def get_last_email_timestamp():
-    """Retrieve the last email timestamp from a file or database."""
-    try:
-        with open('last_email_timestamp.txt', 'r') as file:
-            timestamp = file.read().strip()
-            return datetime.datetime.strptime(timestamp, '%Y-%m-%d %H:%M:%S')
-    except FileNotFoundError:
-        # Return a default timestamp if the file is not found
-        return datetime.datetime.min
-
-
-def store_last_email_timestamp(timestamp):
-    """Store the last email timestamp to a file or database."""
-    with open('last_email_timestamp.txt', 'w') as file:
-        file.write(timestamp.strftime('%Y-%m-%d %H:%M:%S'))
-
-
-def filter_entries(entries, last_email_timestamp):
-    """Filter entries based on the last email timestamp."""
-    filtered_entries = []
-    for entry in entries:
-        published_date = entry.get('published')
-        if published_date:
-            entry_timestamp = datetime.datetime.strptime(published_date, '%a, %d %b %Y %H:%M:%S %z')
-            if entry_timestamp > last_email_timestamp:
-                filtered_entries.append(entry)
-    return filtered_entries
 
 
 
