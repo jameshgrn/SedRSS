@@ -67,39 +67,6 @@ def filter_entries(entries, last_email_timestamp):
                 filtered_entries.append(entry)
     return filtered_entries
 
-def main_for_testing():
-    """Main function to orchestrate the operations."""
-    journals = fetch_feeds.read_journals_from_csv('journals.csv')
-
-    # Select one article from each journal
-    selected_entries = []
-    for journal_name, rss_url in journals.items():
-        entries = fetch_feeds.get_feed_entries(rss_url)
-        if entries:
-            entry = entries[0]  # Select the first entry
-            entry['journal_name'] = journal_name  # Add journal name to the entry
-            selected_entries.append(entry)
-
-    # Sort the selected entries by journal name
-    selected_entries.sort(key=operator.itemgetter('journal_name'))
-
-    # Format the email body
-    email_body = send_email.format_email(selected_entries)
-
-
-
-    # Review the final email text
-
-    recipient_email = 'jhgearon@iu.edu'
-
-
-    sender_email, sender_password = send_email.get_sender_credentials()
-
-    send_email.send_email(email_body, sender_email, sender_password, recipient_email)
-
-    # Store the timestamp of the current execution as the last email timestamp
-    store_last_email_timestamp(datetime.datetime.now())
-
 
 
 if __name__ == '__main__':
