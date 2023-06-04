@@ -21,23 +21,26 @@ def generate_greeting(titles, journals):
                  f"personalized " \
                  f"greeting message for the email body, briefing the readers on the selected articles for this week's " \
                  f"" \
-                 f"newsletter.\n" \
-                 f"Here are the titles of the articles: {titles_text}\n" \
-                 f"The articles are from the following journals: {journals_text}\n" \
+                 f"newsletter.\n\n" \
+                 f"Here are the titles of the articles: {titles_text}\n\n" \
+                 f"The articles are from the following journals: {journals_text}\n\n" \
                  f"Please choose 1-3 articles based on the quality of the title, prestige of the journal, " \
                  f"relevance to " \
                  f"sedimentary geology, and inclusion of an abstract. Generate short titles or use existing short " \
-                 f"titles instead of the full title.\n" \
+                 f"titles " \
+                 f"instead of the full title.\n\n" \
                  f"Construct a concise but friendly greeting message that summarizes the selected articles, " \
                  f"highlighting " \
                  f"their significance and why they were chosen. Your output must be NO MORE than 150 words. " \
-                 f"Additionally, you will return the text in HTML/CSS formatting intended for an email. Be creative " \
-                 f"while maintaining professionalism.\n" \
+                 f"Additionally, " \
+                 f"you will return the text in HTML/CSS formatting intended for an email. Be creative while " \
+                 f"maintaining " \
+                 f"professionalism.\n\n" \
                  f"Here are some other rules to follow:\n" \
-                 f"1. Always say Dear SedRSS X, where X is a fill in for community, family, subscribers, devotees, " \
-                 f"etc.,.\n" \
-                 f"2. Always include <p>-- SedRSS Management</p> at the end of the message\n" \
-                 """3. Always use this formatting for the email body beginning:
+                 f"1. Always say 'Dear SedRSS X', where X is a fill-in for 'community,' 'family,' 'subscribers,' " \
+                 f"'devotees,' etc.\n" \
+                 f"2. Always include '<p>-- SedRSS Management</p>' at the end of the message.\n" \
+                 """3. Always use this formatting for the email body beginning:\n
                      <!DOCTYPE html>
                      <html>
                      <head>
@@ -74,62 +77,23 @@ def generate_greeting(titles, journals):
                      </head>
                      <body>
                        <p>Hey Sed Folks!</p>\n
-                Here is an example of a greeting message, use it as a template.\n"""
-
-    system_msg += """
-                      <!DOCTYPE html>
-                      <html>
-                      <head>
-                        <title>SedRSS Newsletter</title>
-                        <style>
-                          body {
-                            font-family: Arial, sans-serif;
-                            background-color: #f2f2f2;
-                            margin: 0;
-                            padding: 20px;
-                          }
-
-                          h1 {
-                            color: #333;
-                            font-size: 24px;
-                            margin-bottom: 20px;
-                          }
-
-                          p {
-                            color: #555;
-                            font-size: 16px;
-                            line-height: 1.5;
-                            margin-bottom: 10px;
-                          }
-
-                          strong {
-                            font-weight: bold;
-                          }
-
-                          em {
-                            font-style: italic;
-                          }
-                        </style>
-                      </head>
-                      <body>
-                        <p>Hey Sed Folks!</p>
-                        <p>Welcome to this week's edition of the SedRSS newsletter. We've hand-picked a selection of 
-                        articles that we think will be of particular interest to sedimentary geologists:</p>
-                        <p><em><strong>Rift propagation unravelled:</strong></em> This short communication in the 
-                        journal <em>Marine and Petroleum Geology</em> examines Cenozoic subsidence patterns in the 
-                        South China Sea, using them to understand the eastward propagation of continental rifting.</p>
-                        <p><em><strong>Aerosol forcing weakened:</strong></em> The relationship between aerosols and 
-                        clouds is complex; this article in <em>Geophysical Research Letters</em> argues that biomass 
-                        burning is increasing atmospheric variability, making the impact of aerosol forcing less 
-                        clear.</p>
-                        <p><em><strong>The taphonomic clock:</strong></em> This <em>Sedimentary Geology</em> article 
-                        describes a new way to track the age of coral reef stratigraphy using sediment grain size as 
-                        a clock.</p>
-                        <p>We hope you find these articles as thought-provoking as we did. Happy reading!</p>
-                        <p>-- SedRSS Management</p>
-                      </body>
-                      </html>
-                    """
+                       <p>Welcome to this week's edition of the SedRSS newsletter. We've hand-picked a selection of 
+                       articles that we think will be of particular interest to sedimentary geologists:</p>
+                       <p><em><strong>Rift propagation unravelled:</strong></em> This short communication in the 
+                       journal <em>Marine and Petroleum Geology</em> examines Cenozoic subsidence patterns in the 
+                       South China Sea, using them to understand the eastward propagation of continental rifting.</p>
+                       <p><em><strong>Aerosol forcing weakened:</strong></em> The relationship between aerosols and 
+                       clouds is complex; this article in <em>Geophysical Research Letters</em> argues that biomass 
+                       burning is increasing atmospheric variability, making the impact of aerosol forcing less 
+                       clear.</p>
+                       <p><em><strong>The taphonomic clock:</strong></em> This <em>Sedimentary Geology</em> article 
+                       describes a new way to track the age of coral reef stratigraphy using sediment grain size as 
+                       a clock.</p>
+                       <p>We hope you find these articles as thought-provoking as we did. Happy reading!</p>
+                       <p>-- SedRSS Management</p>
+                     </body>
+                     </html>
+                   """
 
     # Create a dataset using GPT
     response = openai.ChatCompletion.create(model = "gpt-3.5-turbo",
