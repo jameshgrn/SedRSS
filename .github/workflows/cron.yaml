@@ -1,8 +1,10 @@
+# This is a basic workflow to help you get started with Actions
+
 name: Weekly Cron Job
 
 on:
   schedule:
-    - cron: "20 13 * * 0"  # Runs every Sunday at 1:20 PM ET (17:20 UTC)
+    - cron: "30 13 * * 0"  # Runs every Sunday at 1:30 PM ET (17:30 UTC)
 
 jobs:
   run-script:
@@ -23,5 +25,6 @@ jobs:
           pip install -r requirements.txt
 
       - name: Run script
-        run: python main.py why isnt this running on github
+        run: python main.py
+
 
