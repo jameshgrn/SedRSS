@@ -29,7 +29,7 @@ def main():
 
     recipient_email = 'jhgearon@iu.edu'
 
-    # Get sender credentials from config.ini
+
     sender_email, sender_password = send_email.get_sender_credentials()
 
     send_email.send_email(email_body, sender_email, sender_password, recipient_email)
@@ -92,7 +92,7 @@ def main_for_testing():
 
     recipient_email = 'jhgearon@iu.edu'
 
-    # Get sender credentials from config.ini
+
     sender_email, sender_password = send_email.get_sender_credentials()
 
     send_email.send_email(email_body, sender_email, sender_password, recipient_email)
@@ -103,4 +103,4 @@ def main_for_testing():
 
 
 if __name__ == '__main__':
-    main_for_testing()
+    main()

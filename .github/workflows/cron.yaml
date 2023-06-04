@@ -2,7 +2,7 @@ name: Weekly Cron Job
 
 on:
   schedule:
-    - cron: "0 13 * * 5"  # Runs every Friday at 9am ET (13:00 UTC)
+    - cron: "45 12 * * 0"  # Runs every Sunday at 12:45 PM UTC
 
 jobs:
   run-script:
