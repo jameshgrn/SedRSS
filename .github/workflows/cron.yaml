@@ -4,7 +4,7 @@ name: Weekly Cron Job
 
 on:
   schedule:
-    - cron: "0 18 * * 0"  # Runs every Sunday at 6:00 PM ET (22:00 UTC)
+    - cron: "36 18 * * 0"  # Runs every Sunday at 6:36 PM ET (22:36 UTC)
 
 jobs:
   run-script:
@@ -12,10 +12,10 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v2
 
       - name: Set up Python
-        uses: actions/setup-python@v2.2.2
+        uses: actions/setup-python@v2
         with:
           python-version: 3.9
 
