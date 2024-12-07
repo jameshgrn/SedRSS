@@ -1,0 +1,24 @@
+[RSS Feeds] -> [Data Ingestion] -> [Article Ranking] -> [Content Selection]
+                                                              |
+                                                              v
+[Email Distribution] <- [Email Preparation] <- [Newsletter Formatting] <- [Content Generation]
+         |
+         v
+[Logging and Analytics] <-> [Memory Management]
+
+
+[RSS Feed Fetcher] → [Data Standardizer] → [Article Database] ←→ [Memory Manager]
+         ↓                                         ↓
+[Journal Impact Factor Analyzer] → [Article Ranker] ← [Relevance Scorer]
+                                         ↓
+                                [Content Selector]
+                                         ↓
+                                [Article Summarizer]
+                                         ↓
+                                [Newsletter Composer]
+                                         ↓
+                                [HTML Formatter]
+                                         ↓
+                                [Email Compiler]
+                                         ↓
+                                [Email Distributor] → [Analytics Tracker]
